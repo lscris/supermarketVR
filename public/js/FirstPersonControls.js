@@ -157,12 +157,6 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 				case 82: /*R*/ this.moveUp = true; break;
 				case 70: /*F*/ this.moveDown = true; break;
 			}
-
-			if(pathEnabled) {
-					this.moveLeft = false;
-					this.moveRight = false;
-				}
-
 		}
 	};
 
@@ -252,20 +246,16 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 			}
 
-			if(!pathEnabled) {
-				var targetPosition = this.target,
-					position = this.object.position;
+			
+			var targetPosition = this.target,
+				position = this.object.position;
 
-				targetPosition.x = position.x + 100 * Math.sin( this.phi ) * Math.cos( this.theta );
-				targetPosition.y = position.y + 100 * Math.cos( this.phi );
-				targetPosition.z = position.z + 100 * Math.sin( this.phi ) * Math.sin( this.theta );
+			targetPosition.x = position.x + 100 * Math.sin( this.phi ) * Math.cos( this.theta );
+			targetPosition.y = position.y + 100 * Math.cos( this.phi );
+			targetPosition.z = position.z + 100 * Math.sin( this.phi ) * Math.sin( this.theta );
 
-				this.object.lookAt( targetPosition );
-			}
-		} else {
-			this.mouseX = 0;
-			this.mouseY = 0;
-		}
+			this.object.lookAt( targetPosition );
+		}			
 	};
 
 
