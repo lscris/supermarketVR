@@ -194,20 +194,26 @@
       addStats();
 
       /* web socket */
-      socket.on('message',function(data){         
-          if (data.pitch>0.7){
+      socket.on('message',function(data){  
+
+          //TODO test more
+          if(data.yaw > 5)
+            data.yaw = 5;
+          if(data.yaw <-5)
+            data.yaw = -5;
+          /****************/
+
+          if (data.pitch>0.5){
             controls.moveForward = true ;
-            // camera.rotation.y += degreesToRadians(data.yaw/50);
-            // walkingFactor = data.pitch/(Math.abs(data.yaw)*10);
-            walkingFactor = data.pitch/2;
+            walkingFactor = data.pitch/1.5;
+            controls.lookSpeed = degreesToRadians(data.yaw*1.5);
           }else{
             controls.moveForward = false;
             walkingFactor = 0;
-            controls.lookSpeed = 0;
+            controls.lookSpeed = degreesToRadians(data.yaw*4);
           }
-            controls.lookSpeed = degreesToRadians(data.yaw/10);
-          
-          // console.log('walking factor is ' + walkingFactor);
+          console.log(data.yaw);
+
       });
 
       // add the output of the renderer to the html element
