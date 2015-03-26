@@ -46,7 +46,7 @@
       var camera;
       var HUDscene, HUDcamera;
 
-      var oculusEnabled = true;
+      var oculusEnabled = false;
 
       // scene scale
       var sceneX, sceneZ;
@@ -69,7 +69,7 @@
       var clock = new THREE.Clock();
       var delta;
 
-      var walkingFactor = 10;
+      var walkingFactor = 0;
 
       var cube;
 
@@ -194,23 +194,21 @@
       addStats();
 
       /* web socket */
-      socket.on('message',function(data){          
-          if (data.pitch>1){
-            controls.moveForward = true;
+      socket.on('message',function(data){         
+          if (data.pitch>0.7){
+            controls.moveForward = true ;
+            // camera.rotation.y += degreesToRadians(data.yaw/50);
+            // walkingFactor = data.pitch/(Math.abs(data.yaw)*10);
             walkingFactor = data.pitch/2;
           }else{
             controls.moveForward = false;
+            walkingFactor = 0;
+            controls.lookSpeed = 0;
           }
-          console.log('walking factor is ' + walkingFactor);
+            controls.lookSpeed = degreesToRadians(data.yaw/10);
+          
+          // console.log('walking factor is ' + walkingFactor);
       });
-
-      /*
-      setInterval(function() {
-        //alert("Hello"); 
-        camera.rotation.y += 10;
-        console.log("called");
-      }, 1000);
-      */
 
       // add the output of the renderer to the html element
       content.appendChild(renderer.domElement);
@@ -229,6 +227,10 @@
         controls.lookSpeed = 0.00;
         controls.lookVertical = false;  //TODO true
       }
+    }
+
+    function degreesToRadians(degree){
+        return degree*(Math.PI/180);
     }
     
     function render(dt) {

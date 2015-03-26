@@ -149,7 +149,7 @@ THREE.DK2Controls = function(camera) {
 
     // update position
     if (this.wasd.up)
-      this.controller.translateZ(-this.translationSpeed * delta);
+      this.controller.translateZ(-this.translationSpeed * delta*walkingFactor);
 
     if (this.wasd.down)
       this.controller.translateZ(this.translationSpeed * delta);

@@ -204,7 +204,8 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 			// if(!running)
 			// 	actualMoveSpeed = delta * this.movementSpeed*;
 			// else
-				actualMoveSpeed = delta * this.movementSpeed*walkingFactor;
+				actualMoveSpeed = delta * this.movementSpeed * walkingFactor;
+				console.log(actualMoveSpeed);
 
 
 			if ( this.moveForward || ( this.autoForward && !this.moveBackward ) ) this.object.translateZ( - ( actualMoveSpeed + this.autoSpeedFactor ) );
@@ -255,7 +256,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 			targetPosition.z = position.z + 100 * Math.sin( this.phi ) * Math.sin( this.theta );
 
 			// disabled because makes impossible to rotate the camera from the init/render function
-			//this.object.lookAt( targetPosition );
+			this.object.lookAt( targetPosition );
 		}	
 	};
 
