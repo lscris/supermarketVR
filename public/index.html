@@ -46,6 +46,8 @@
       var camera;
       var HUDscene, HUDcamera;
 
+      var oculusEnabled = true;
+
       // scene scale
       var sceneX, sceneZ;
       var mapX, mapY;
@@ -67,11 +69,9 @@
       var clock = new THREE.Clock();
       var delta;
 
-      var walkingFactor = 0;
+      var walkingFactor = 10;
 
       var cube;
-
-      var oculusEnabled = false;
 
       var stats;
 
@@ -96,10 +96,12 @@
       window.onkeydown = function(e) {
           var key = e.keyCode ? e.keyCode : e.which;
 
-          // // 16 = shift
-          // if (key == 16) {
-          //   running = 1;
-          // }
+          /*
+          // 16 = shift
+          if (key == 16) {
+             running = 1;
+          }
+          */
 
       }
 
@@ -119,10 +121,12 @@
             
           }
 
-          // // 16 = shift
-          // if (key == 16) {
-          //   running = false;
-          // }
+          /*
+          // 16 = shift
+          if (key == 16) {
+            running = false;
+          }
+          */
 
           // 79 = o
           if (key == 79) {
@@ -190,8 +194,7 @@
       addStats();
 
       /* web socket */
-      socket.on('message',function(data){
-          
+      socket.on('message',function(data){          
           if (data.pitch>1){
             controls.moveForward = true;
             walkingFactor = data.pitch/2;
@@ -200,6 +203,14 @@
           }
           console.log('walking factor is ' + walkingFactor);
       });
+
+      /*
+      setInterval(function() {
+        //alert("Hello"); 
+        camera.rotation.y += 10;
+        console.log("called");
+      }, 1000);
+      */
 
       // add the output of the renderer to the html element
       content.appendChild(renderer.domElement);
@@ -250,7 +261,6 @@
       stats.update();
 
       scene.simulate(); // run physics
-
 
       requestAnimationFrame( render );      
     }

@@ -36,10 +36,10 @@ function HUD(HUDScene, HUDisVisible, oculusEnabled) {
   LapCounterMesh.scale.set(window.innerWidth / 2, window.innerHeight / 2, 1);
   LapCounterMesh.position.z = -0.01;
   LapCounterMesh.position.x = 1000;
-  HUDscene.add(LapCounterMesh);
+  //HUDscene.add(LapCounterMesh);
 
   // load minimap texture
-  var texturePath = THREE.ImageUtils.loadTexture("textures/map.png");
+  var texturePath = THREE.ImageUtils.loadTexture("textures/ui.png");
   var HUDMinimapMaterial = new THREE.MeshBasicMaterial({  map: texturePath });
   HUDMinimapMaterial.transparent = true
   HUDMinimapMaterial.opacity = 1;
@@ -51,28 +51,28 @@ function HUD(HUDScene, HUDisVisible, oculusEnabled) {
   hudMinimapMesh.position.z = -0.01;
   hudMinimapMesh.position.x = 0;//1000;
   hudMinimapMesh.position.y = 0;//500;
-  HUDscene.add(hudMinimapMesh);
+  //HUDscene.add(hudMinimapMesh);
 
   this.minimap = hudMinimapMesh;
 
   // load pointer (on minimap) texture
-  var texturePath = THREE.ImageUtils.loadTexture("textures/pointer_red.png");
+  var texturePath = THREE.ImageUtils.loadTexture("textures/ui.png");
   var HUDRedPointerMaterial = new THREE.MeshBasicMaterial({  map: texturePath });
   HUDRedPointerMaterial.transparent = true
   HUDRedPointerMaterial.opacity = 1;
   redPointerMesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), HUDRedPointerMaterial);
   redPointerMesh.scale.set(20, 20, 1);
   redPointerMesh.position.z = -0.01;
-  HUDscene.add(redPointerMesh);
+  //HUDscene.add(redPointerMesh);
 
-  var texturePath = THREE.ImageUtils.loadTexture("textures/pointer.png");
+  var texturePath = THREE.ImageUtils.loadTexture("textures/ui.png");
   var HUDPointerMaterial = new THREE.MeshBasicMaterial({  map: texturePath });
   HUDPointerMaterial.transparent = true
   HUDPointerMaterial.opacity = 1;
   pointerMesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), HUDPointerMaterial);
   pointerMesh.scale.set(20, 20, 1);
   pointerMesh.position.z = -0.01;
-  HUDscene.add(pointerMesh);
+  //HUDscene.add(pointerMesh);
 
   // ---- PAUSE STATE STUFF 
   // create text
@@ -86,7 +86,7 @@ function HUD(HUDScene, HUDisVisible, oculusEnabled) {
   context.font = "Bold 40px Arial";
   context.textAlign = "center";
   context.fillStyle = "rgba(255, 0, 0, 1)";
-  context.fillText('PAUSE ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff', 0, 50);
+  context.fillText('PAUSE', 0, 50);
 
   // canvas contents will be used for a texture
   var textTexture = new THREE.Texture(textCanvas) 

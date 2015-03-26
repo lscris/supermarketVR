@@ -254,8 +254,9 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 			targetPosition.y = position.y + 100 * Math.cos( this.phi );
 			targetPosition.z = position.z + 100 * Math.sin( this.phi ) * Math.sin( this.theta );
 
-			this.object.lookAt( targetPosition );
-		}			
+			// disabled because makes impossible to rotate the camera from the init/render function
+			//this.object.lookAt( targetPosition );
+		}	
 	};
 
 
